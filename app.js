@@ -61,7 +61,6 @@ store.on("error", (err) => {
 
 const sessionoption = {
   store,
-  name: "wanderlust.sid",
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,

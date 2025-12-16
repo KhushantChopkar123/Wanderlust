@@ -5,7 +5,7 @@ const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
 const listingController=require("../controllers/listings.js")
 const multer  = require('multer')//its is used for parse    . used npm   multer , cloudaniary, used multer-cloudanary
-const { storage } = require("../cloudConfig");//cloud id used for store.
+const { storage } = require("../cloudconfig");//cloud id used for store.
 const upload = multer({ storage })//store it
 
 router.route("/")
