@@ -1,0 +1,131 @@
+<%layout("/layouts/boilerplate")%>
+
+
+ 
+    <body>
+        <div class="row mt-3">
+            <div class="col-8 offset-2">
+        <form method="post" action="/listings/<%=listing._id%>?_method=PUT"  novalidate class="needs-validation" enctype="multipart/form-data">
+            <h4>Edit your Listing</h4>
+
+    <div class="mb-3">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="listing[title]" type="text" value="<%=listing.title%>" class="form-control" required >
+             <div class="valid-feedback">
+              Title Looks good!
+            </div>
+    </div>
+
+
+    <div class="mb-3">
+            <label for="description">Description</label>
+            <textarea id="description" name="listing[description]" type="text"
+            required     class="form-control"><%=listing.description%></textarea>
+              <div class="invalid-feedback">
+              Please enter a short description!
+            </div>
+    </div>
+
+
+<label class="form-label">Category</label>
+
+<select name="listing[category]" class="form-select" required>
+  <option value="">Select category</option>
+
+  <option value="Trending" <%= listing.category === "Trending" ? "selected" : "" %>>
+    Trending
+  </option>
+
+  <option value="Apartment" <%= listing.category === "Apartment" ? "selected" : "" %>>
+    Apartment
+  </option>
+
+  <option value="Villa" <%= listing.category === "Villa" ? "selected" : "" %>>
+    Villa
+  </option>
+
+  <option value="Bungalow" <%= listing.category === "Bungalow" ? "selected" : "" %>>
+    Bungalow
+  </option>
+
+  <option value="Hostel" <%= listing.category === "Hostel" ? "selected" : "" %>>
+    Hostel
+  </option>
+
+  <option value="Cottage" <%= listing.category === "Cottage" ? "selected" : "" %>>
+    Cottage
+  </option>
+
+  <option value="Guest-house" <%= listing.category === "Guest-house" ? "selected" : "" %>>
+    Guest-house
+  </option>
+
+  <option value="Studio" <%= listing.category === "Studio" ? "selected" : "" %>>
+    Studio
+  </option>
+</select>
+
+
+
+
+
+
+
+      
+          <div class="mb-3">
+             Original Listing Image <br>
+           <img src="<%=originalImageUrl%>" alt="">
+          </div>
+
+
+
+
+          <div class="mb-3">
+             <label for="image">Upload New Image </label>
+             <input type="file" id="image" name="listing[image]"   class="form-control">
+
+          </div>
+     
+ <div class="row">
+<div class="mb-3 col-md-4">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="listing[price]" type="number"  value="<%=listing.price%>" class="form-control" required>
+             <div class="invalid-feedback">
+                Price should be Valid!
+              </div>
+</div>
+
+<div class="mb-3   col-md-8"  >
+               <label for="country">Country</label>
+               <input type="text" id="country" name="listing[country]" type="text"
+                value="<%=listing.country%>" class="form-control"required>
+                <div class="invalid-feedback">
+                Country name should be Valid!
+              </div>
+</div>
+        
+ </div>
+
+  <div class="mb-3">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="listing[location]" type="text" 
+            value="<%=listing.location%>" class="form-control" required>
+             <div class="invalid-feedback">
+                Location name should be Valid!
+              </div>
+</div>
+      
+
+
+          
+            <button class="add-btn  edit-btn p-1" type="submit">Edit Listing!</button>
+
+        
+
+
+        </form>
+        <br><br>
+  </div>
+  </div>
+      
+    </body>

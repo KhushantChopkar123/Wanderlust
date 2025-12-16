@@ -1,0 +1,173 @@
+<% layout("/layouts/boilerplate") %>
+
+  
+        <style>
+            #filters{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .tax-toggle{
+                border: 1px solid black ;
+                border-radius: 1rem;
+                height: 2.7rem;
+                padding: 0.9rem;
+                margin-left: 2rem;
+                display: flex;
+                align-items: center;
+            }
+            .filter{
+                text-align: center;
+                margin-right: 2rem;
+                margin-top: 1.5rem;
+                opacity: 0.6;
+            }
+            .filter:hover{
+                opacity: 1;
+                cursor: pointer;
+            }
+            .filter p{
+                font-size: 0.8rem;
+            };
+            
+            
+            
+
+        </style>
+        <!-- <h3>All listings</h3> -->
+
+
+      <div id="filters">
+        <div class="filter ms-4">
+
+            <a href="/listings/category/Trending" class="nav-link"><div><i class="fa-solid fa-fire"></i></div></a>
+            <p>Trending</p>
+        </div>
+       <div class="filter">
+           <a href="/listings/category/Apartment" class="nav-link"><div><i class="fa-regular fa-building"></i></i></div></a>
+            <p>Apartment</p>
+        </div>
+         <div class="filter">
+          <a href="/listings/category/House" class="nav-link"><div><i class="fa-solid fa-house"></i></div></a>
+            <p>House</p>
+        </div>
+       <div class="filter">
+         <a href="/listings/category/Villa" class="nav-link"><div><i class="fa-solid fa-mountain-sun"></i></div></a>
+            <p>Villa</p>
+        </div>
+        <div class="filter">
+   <a href="/listings/category/Bungalow" class="nav-link"><div><i class="fa-solid fa-house-chimney-window"></i></div></a>
+            <p>Bungalow</p>
+        </div>
+       <div class="filter">
+         <a href="/listings/category/Hostel" class="nav-link"><div><i class="fa-solid fa-hotel"></i></div></a>
+            <p>Hostel</p>
+        </div>
+        <div class="filter">
+           <a href="/listings/category/Cottage" class="nav-link"><div><i class="fa-solid fa-tree"></i></div></a>
+            <p>Cottage</p>
+        </div>
+       <div class="filter">
+        <a href="/listings/category/Guest-house" class="nav-link"><div><i class="fa-solid fa-house-user"></i></div></a>
+            <p>Guest-house</p>
+        </div>
+        <div class="filter">
+           <a href="/listings/category/Studio" class="nav-link"><div><i class="fa-solid fa-building-user"></i></div></a>
+            <p>Studio</p>
+        </div>
+        
+     
+
+
+
+        
+       
+        <div class="tax-toggle">
+       <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after Taxes</label>
+       </div>
+
+        </div>
+        
+       
+       
+        
+      </div>
+
+
+       <div class="page-content container">
+
+
+        
+  <% if (allListing.length === 0) { %>
+
+    <!-- No listings found message -->
+   <div class="alert alert-warning text-center mt-5">
+    <div class="mt-3 mb-3 text-center"> 😕 No listings are found on that location!</div>
+  
+</div>
+  <% } else { %>
+
+ 
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+
+      <% for (const listing of allListing) { %>
+
+        <a href="/listings/<%= listing._id %>" class="text-decoration-none">
+          <div class="card listing-card">
+            <img
+              src="<%= listing.image.url %>"
+              class="card-img-top"
+              alt="listing"
+              style="height: 14rem;"
+            />
+
+            <div class="card-body">
+              <p class="card-text">
+                <b><%= listing.title %></b>
+             <%if(showCategory){%>
+              <span class="badge bg-secondary mb-2">
+             <%= listing.category %>
+         </span>
+
+             <%}%>
+             
+               
+
+              <br>
+                ₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %>/night
+                <span style="display: none;" class="tax-info">+18% GST</span>
+              </p>
+            </div>
+          </div>
+        </a>
+
+      <% } %>
+
+    </div>
+ <% } %>
+
+</div>
+
+
+
+<script>
+    let taxswitch=document.getElementById("flexSwitchCheckDefault")
+    taxswitch.addEventListener("click",()=>{
+        let taxinfo=document.getElementsByClassName("tax-info");
+        for (const info of taxinfo) {
+            if (info.style.display != "inline") {
+                info.style.display = "inline";
+            } else {
+                info.style.display = "none";
+            }
+        }
+    });
+</script>
+
+
+   
+
+
+   
