@@ -21,7 +21,7 @@ const reviewSchema= new mongoose.Schema({
         default:Date.now()
     },
     author:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,//in this author we store id of who create the review and curreent user who login or sing in!
         ref:'User'
 
     }

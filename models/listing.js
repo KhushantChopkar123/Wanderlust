@@ -54,8 +54,9 @@ let listingschema = new mongoose.Schema({
     },
     review: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     owner:{
-       type:mongoose.Schema.Types.ObjectId,
-      ref:'User'
+       type:mongoose.Schema.Types.ObjectId,//in this owner we store id of who create the listing and curreent user who login or sing in!
+        ref:'User'
+      
     },
    geometry: {
   type: {
