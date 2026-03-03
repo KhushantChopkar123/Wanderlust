@@ -1,84 +1,136 @@
 <style>
-    .btn-search{
+    .btn-search {
         background-color: #fe424d;
         color: #fff;
         border-radius: 25px;
-        padding: 0 1rem 0 1rem;
-       
+        height: 40px;                 /* match input height */
+        padding: 0 1.2rem;
+        border: none;
+        display: flex;
+        align-items: center;          /* center icon + text vertically */
+        justify-content: center;
     }
-    .btn-search:hover{
-        background-color: #fe424d;
+
+    .btn-search:hover {
+        background-color: #e63946;
         color: #fff;
-       
     }
-    .btn-search i{
-        display: inline;
-        margin-right: 5px;
-        
-        
+
+    .btn-search i {
+        margin-right: 6px;
+        font-size: 14px;
     }
-    .search-inp{
+
+    .search-inp {
         border-radius: 25px;
-        padding: 0.5rem 3rem;
+        height: 40px;                 /* same height as button */
+        padding: 0 1.5rem;            /* keep left-right space */
         font-size: 0.9rem;
     }
-    .icon{
-        font-size:medium;
+
+    .icon {
+        font-size: 14px;
+    }
+
+    /* Desktop → Center search */
+    @media (min-width: 768px) {
+        .search-form {
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+    }
+
+    /* Mobile dropdown background */
+    @media (max-width: 767px) {
+        .navbar-collapse {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .search-form {
+            margin: 0;
+        }
     }
 </style>
 
 
 
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+
+<nav class="navbar navbar-expand-md bg-light border-bottom sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-regular fa-compass"></i>
+        </a>
+
+        <!-- Toggler FIXED -->
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Navbar Content -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+            <!-- Left Side -->
             <div class="navbar-nav">
-               
                 <a class="nav-link" href="/listings">Explore</a>
-              
-               
-            </div>
-            <div class="navbar-nav ms-auto" >
-                 <form class="d-flex" action="/listings/search" method="GET">
-      <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" aria-label="Search" name="q"  required>
-      <button class="btn btn-search" type="submit">
-        <i class="fa-solid fa-magnifying-glass icon"></i>Search</button>
-    </form>
             </div>
 
+            <!-- Center Search -->
+<form class="d-flex align-items-center search-form my-2 my-md-0"
+      action="/listings/search"
+      method="GET">
 
+    <input class="form-control me-2 search-inp"
+           type="search"
+           placeholder="Search destinations"
+           name="q"
+           required>
 
+    <button class="btn btn-search d-flex align-items-center justify-content-center"
+            type="submit">
+        <i class="fa-solid fa-magnifying-glass me-2"></i>
+        Search
+    </button>
 
+</form>
+            <!-- Right Side -->
+            <div class="navbar-nav ms-md-auto text-center text-md-start">
+                <a class="nav-link" href="/listings/new">Airbnb your home</a>
 
+                <% if (!currUser) { %>
+                    <a class="nav-link" href="/signup"><b>Sign up</b></a>
+                    <a class="nav-link" href="/login"><b>Login</b></a>
+                <% } %>
 
-
-
-
-
-
-
-      
-     
-
-              <div class="navbar-nav ms-auto">
-                 <a class="nav-link" href="/listings/new"> Airbnb your home</a>
-
-                <%if (!currUser) {%>
-                     <a class="nav-link"  href="/signup"><b>Sing up</b></a>
-                     <a class="nav-link" href="/login"><b>Login</b></a>
-               <% }%>
-               <%if (currUser) {%>
-                <a class="nav-link" href="/logout">Logout</a>
-                     
-               <% }%>
-               
-               
+                <% if (currUser) { %>
+                    <a class="nav-link" href="/logout">Logout</a>
+                <% } %>
             </div>
+
         </div>
     </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
