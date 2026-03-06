@@ -1,10 +1,13 @@
-<%layout("/layouts/boilerplate")%>
-<body >
-    <div class="alert alert-warning col-6 offset-3 mt-5"  role="alert" style="height: 350px;  width:85% ; margin-left:80px;">
-   
-      <div style="margin-top: 8.5em;"><h5 class="alert-heading" style="text-align:center;"><%=err.message%></h5></div>
-   
-  
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    
+   <div class="alert alert-warning text-center p-4 shadow w-100" role="alert" style="max-width:600px;">
+      
+      <h5 class="alert-heading mb-0"><%= err.message %></h5>
+    
+    </div>
+
   </div>
-</div>
 </body>
