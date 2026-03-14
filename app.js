@@ -104,7 +104,10 @@ app.use("/listings",listingRouter)//parent route for listing routes
 app.use("/listings/:id/review",reviewRouter)//parent route for review routes
 app.use("/",userRouter)//parent route for user routes
 
-
+// root route
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 
 app.use((req, res,next) => {
@@ -116,6 +119,7 @@ app.use((err, req, res, next) => {
     res.status(statuscode).render("listings/error.ejs", {err});
    
 });
+
 
 app.listen(8080, () => {
   console.log("server started at port 8080");
