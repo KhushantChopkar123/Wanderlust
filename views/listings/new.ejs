@@ -1,92 +1,195 @@
-<%layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %>
 
-  <body>
+<body>
 
-    <div class="row">
-      <div class="col-6  offset-2">
-        <br>
-        <h4>Create a New listing!</h4>
-        <form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data"> 
+<div class="row">
+<div class="col-lg-6 col-md-8 col-12 offset-lg-3 offset-md-2">
 
-          <div class="mb-3">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="listing[title]" type="text" placeholder="Add a Catchy title"
-              class="form-control" required>
-            <div class="valid-feedback">
-              Title Looks good!
-            </div>
+<br>
+<h3>Create a New Student Rental Listing</h3>
 
-          </div>
+<form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
 
-          <div class="mb-3">
-            <label for="description">Description</label>
-            <textarea id="description" name="listing[description]" type="text" class="form-control" required></textarea>
-            <div class="invalid-feedback">
-              Please enter a short description!
-            </div>
-          </div>
+<!-- TITLE -->
 
-          <label class="form-label">Category</label>
+<div class="mb-3">
+<label for="title" class="form-label">Title</label>
+<input 
+type="text" 
+id="title" 
+name="listing[title]" 
+placeholder="Room near college..." 
+class="form-control" 
+required>
+</div>
+
+<!-- CATEGORY -->
+
+<div class="mb-3">
+<label class="form-label">Property Type</label>
+
 <select name="listing[category]" class="form-select" required>
-  <option value="">Select category</option>
-  <option value="Trending">Trending</option>
-  <option value="Apartment">Apartment</option>
-  <option value="Villa">Villa</option>
-  <option value="Bungalow">Bungalow</option>
-  <option value="Hostel">Hostel</option>
-  <option value="Cottage">Cottage</option>
-  <option value="Guest-house">Guest-house</option>
-  <option value="Studio">Studio</option>
+
+<option value="">Select Property Type</option>
+
+<option value="PG">PG</option>
+<option value="Hostel">Hostel</option>
+<option value="Single Room">Single Room</option>
+<option value="Shared Room">Shared Room</option>
+<option value="Apartment">Apartment</option>
+<option value="Studio">Studio</option>
+
 </select>
 
+</div>
 
+<!-- DESCRIPTION -->
 
-           <div class="mb-3 mt-3">
-            <label for="image">Upload your Image </label>
-            <input type="file" id="image" name="listing[image]"  class="form-control" required>
-       
-          </div>
+<div class="mb-3">
+<label for="description" class="form-label">Description</label>
+<textarea 
+id="description" 
+name="listing[description]" 
+class="form-control" 
+rows="3"
+required></textarea>
+</div>
 
+<!-- IMAGE -->
 
+<div class="mb-3">
+<label for="image" class="form-label">Upload Room Image</label>
+<input 
+type="file" 
+id="image" 
+name="listing[image]" 
+class="form-control" 
+required>
+</div>
 
+<!-- PRICE -->
 
-          <div class="row">
-            <div class="mb-3 col-md-4">
-              <label for="price">Price</label>
-              <input type="number"  id="price" name="listing[price]" placeholder="1200"
-                class="form-control" required>
-              <div class="invalid-feedback">
-                Price should be Valid!
-              </div>
-            </div>
+<div class="mb-3">
+<label for="price" class="form-label">Monthly Rent</label>
+<input 
+type="number" 
+id="price" 
+name="listing[price]" 
+placeholder="5000" 
+class="form-control" 
+required>
+</div>
 
-            <div class="mb-3   col-md-8">
-              <label for="country">Country</label>
-              <input type="text" id="country" name="listing[country]" type="text" placeholder="jaipur, Rajasthan"
-                class="form-control" required>
-              <div class="invalid-feedback">
-                Country name should be Valid!
-              </div>
-            </div>
+<!-- LOCATION -->
 
+<div class="mb-3">
+<label for="location" class="form-label">Location</label>
+<input 
+type="text" 
+id="location" 
+name="listing[location]" 
+placeholder="Nagpur, Maharashtra" 
+class="form-control" 
+required>
+</div>
 
+<!-- NEARBY COLLEGE -->
 
-          </div>
+<div class="mb-3">
+<label for="collegeNearby" class="form-label">Nearby College</label>
+<input 
+type="text" 
+id="collegeNearby" 
+name="listing[collegeNearby]" 
+placeholder="VNIT Nagpur" 
+class="form-control">
+</div>
 
-          <div class="mb-3">
-            <label for="location">Location</label>
-            <input type="text" id="location" name="listing[location]" type="text" placeholder="Enter your location!"
-              class="form-control" required>
-            <div class="invalid-feedback">
-              Location should be valid!
-            </div>
-          </div>
-        
-          <button type="submit" class="btn btn-dark add-btn p-1 ">Add List!</button>
+<!-- FACILITIES -->
 
-          <br><br>
-        </form>
-      </div>
-    </div>
+<div class="mb-3">
 
-  </body>
+<label class="form-label">Facilities</label>
+
+<div class="dropdown">
+
+<button class="btn btn-outline-dark dropdown-toggle w-100 text-start"
+type="button"
+data-bs-toggle="dropdown">
+
+Select Facilities
+
+</button>
+
+<div class="dropdown-menu p-3 w-100">
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="listing[facilities]" value="WiFi">
+<label class="form-check-label">WiFi</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Food">
+<label class="form-check-label">Food</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Parking">
+<label class="form-check-label">Parking</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Attached Bathroom">
+<label class="form-check-label">Attached Bathroom</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Laundry">
+<label class="form-check-label">Laundry</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="listing[facilities]" value="AC">
+<label class="form-check-label">AC</label>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- CONTACT PHONE -->
+
+<div class="mb-3">
+<label for="contactPhone" class="form-label">Owner Contact Number</label>
+<input 
+type="text" 
+id="contactPhone" 
+name="listing[contactPhone]" 
+placeholder="9876543210" 
+class="form-control">
+</div>
+
+<!-- CONTACT EMAIL -->
+
+<div class="mb-3">
+<label for="contactEmail" class="form-label">Owner Email</label>
+<input 
+type="email" 
+id="contactEmail" 
+name="listing[contactEmail]" 
+placeholder="owner@gmail.com" 
+class="form-control">
+</div>
+
+<button type="submit" class="btn btn-dark p-2">
+Add Listing
+</button>
+
+<br><br>
+
+</form>
+</div>
+</div>
+
+</body>

@@ -1,131 +1,198 @@
-<%layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %>
 
+<body>
 
- 
-    <body>
-        <div class="row mt-3">
-            <div class="col-8 offset-2">
-        <form method="post" action="/listings/<%=listing._id%>?_method=PUT"  novalidate class="needs-validation" enctype="multipart/form-data">
-            <h4>Edit your Listing</h4>
+<div class="row mt-3">
+<div class="col-8 offset-2">
 
-    <div class="mb-3">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="listing[title]" type="text" value="<%=listing.title%>" class="form-control" required >
-             <div class="valid-feedback">
-              Title Looks good!
-            </div>
-    </div>
+<form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
+<h4>Edit Your Listing</h4>
 
-    <div class="mb-3">
-            <label for="description">Description</label>
-            <textarea id="description" name="listing[description]" type="text"
-            required     class="form-control"><%=listing.description%></textarea>
-              <div class="invalid-feedback">
-              Please enter a short description!
-            </div>
-    </div>
+<!-- TITLE -->
 
+<div class="mb-3">
+<label for="title">Title</label>
+<input type="text" id="title" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
+</div>
 
-<label class="form-label">Category</label>
+<!-- CATEGORY -->
+
+<div class="mb-3">
+<label class="form-label">Property Type</label>
 
 <select name="listing[category]" class="form-select" required>
-  <option value="">Select category</option>
 
-  <option value="Trending" <%= listing.category === "Trending" ? "selected" : "" %>>
-    Trending
-  </option>
+<option value="">Select Property Type</option>
 
-  <option value="Apartment" <%= listing.category === "Apartment" ? "selected" : "" %>>
-    Apartment
-  </option>
+<option value="PG" <%= listing.category === "PG" ? "selected" : "" %>>PG</option>
 
-  <option value="Villa" <%= listing.category === "Villa" ? "selected" : "" %>>
-    Villa
-  </option>
+<option value="Hostel" <%= listing.category === "Hostel" ? "selected" : "" %>>Hostel</option>
 
-  <option value="Bungalow" <%= listing.category === "Bungalow" ? "selected" : "" %>>
-    Bungalow
-  </option>
+<option value="Single Room" <%= listing.category === "Single Room" ? "selected" : "" %>>Single Room</option>
 
-  <option value="Hostel" <%= listing.category === "Hostel" ? "selected" : "" %>>
-    Hostel
-  </option>
+<option value="Shared Room" <%= listing.category === "Shared Room" ? "selected" : "" %>>Shared Room</option>
 
-  <option value="Cottage" <%= listing.category === "Cottage" ? "selected" : "" %>>
-    Cottage
-  </option>
+<option value="Apartment" <%= listing.category === "Apartment" ? "selected" : "" %>>Apartment</option>
 
-  <option value="Guest-house" <%= listing.category === "Guest-house" ? "selected" : "" %>>
-    Guest-house
-  </option>
+<option value="Studio" <%= listing.category === "Studio" ? "selected" : "" %>>Studio</option>
 
-  <option value="Studio" <%= listing.category === "Studio" ? "selected" : "" %>>
-    Studio
-  </option>
 </select>
-
-
-
-
-
-
-
-      
-          <div class="mb-3">
-             Original Listing Image <br>
-           <img src="<%=originalImageUrl%>" alt="">
-          </div>
-
-
-
-
-          <div class="mb-3">
-             <label for="image">Upload New Image </label>
-             <input type="file" id="image" name="listing[image]"   class="form-control">
-
-          </div>
-     
- <div class="row">
-<div class="mb-3 col-md-4">
-            <label for="price">Price</label>
-            <input type="number" id="price" name="listing[price]" type="number"  value="<%=listing.price%>" class="form-control" required>
-             <div class="invalid-feedback">
-                Price should be Valid!
-              </div>
 </div>
 
-<div class="mb-3   col-md-8"  >
-               <label for="country">Country</label>
-               <input type="text" id="country" name="listing[country]" type="text"
-                value="<%=listing.country%>" class="form-control"required>
-                <div class="invalid-feedback">
-                Country name should be Valid!
-              </div>
+<!-- DESCRIPTION -->
+
+<div class="mb-3">
+<label for="description">Description</label>
+<textarea id="description" name="listing[description]" class="form-control" required><%= listing.description %></textarea>
 </div>
-        
- </div>
 
-  <div class="mb-3">
-            <label for="location">Location</label>
-            <input type="text" id="location" name="listing[location]" type="text" 
-            value="<%=listing.location%>" class="form-control" required>
-             <div class="invalid-feedback">
-                Location name should be Valid!
-              </div>
+<!-- CURRENT IMAGE -->
+
+<div class="mb-3">
+Original Listing Image <br>
+<img src="<%= originalImageUrl %>" style="width:200px;">
 </div>
-      
 
+<!-- NEW IMAGE -->
 
-          
-            <button class="add-btn  edit-btn p-1" type="submit">Edit Listing!</button>
+<div class="mb-3">
+<label for="image">Upload New Image</label>
+<input type="file" id="image" name="listing[image]" class="form-control">
+</div>
 
-        
+<!-- PRICE -->
 
+<div class="mb-3">
+<label for="price">Monthly Rent</label>
+<input type="number" id="price" name="listing[price]" value="<%= listing.price %>" class="form-control" required>
+</div>
 
-        </form>
-        <br><br>
-  </div>
-  </div>
-      
-    </body>
+<!-- LOCATION -->
+
+<div class="mb-3">
+<label for="location">Location</label>
+<input type="text" id="location" name="listing[location]" value="<%= listing.location %>" class="form-control" required>
+</div>
+
+<!-- COLLEGE NEARBY -->
+
+<div class="mb-3">
+<label for="collegeNearby">Nearby College</label>
+<input type="text" id="collegeNearby" name="listing[collegeNearby]" value="<%= listing.collegeNearby %>" class="form-control">
+</div>
+
+<!-- FACILITIES -->
+
+<div class="mb-3">
+
+<label class="form-label">Facilities</label>
+
+<div class="dropdown">
+
+<button class="btn btn-outline-dark dropdown-toggle w-100 text-start"
+type="button"
+data-bs-toggle="dropdown">
+
+Select Facilities
+
+</button>
+
+<div class="dropdown-menu p-3 w-100">
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox"
+name="listing[facilities]"
+value="WiFi"
+<%= listing.facilities.includes("WiFi") ? "checked" : "" %>>
+<label class="form-check-label">WiFi</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox"
+name="listing[facilities]"
+value="Food"
+<%= listing.facilities.includes("Food") ? "checked" : "" %>>
+<label class="form-check-label">Food</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox"
+name="listing[facilities]"
+value="Parking"
+<%= listing.facilities.includes("Parking") ? "checked" : "" %>>
+<label class="form-check-label">Parking</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox"
+name="listing[facilities]"
+value="Attached Bathroom"
+<%= listing.facilities.includes("Attached Bathroom") ? "checked" : "" %>>
+<label class="form-check-label">Attached Bathroom</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox"
+name="listing[facilities]"
+value="Laundry"
+<%= listing.facilities.includes("Laundry") ? "checked" : "" %>>
+<label class="form-check-label">Laundry</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="checkbox"
+name="listing[facilities]"
+value="AC"
+<%= listing.facilities.includes("AC") ? "checked" : "" %>>
+<label class="form-check-label">AC</label>
+</div>
+
+</div>
+</div>
+
+</div>
+<!-- CONTACT PHONE -->
+
+<div class="mb-3">
+<label for="contactPhone">Owner Contact Number</label>
+<input type="text" id="contactPhone" name="listing[contactPhone]" value="<%= listing.contactPhone %>" class="form-control">
+</div>
+
+<!-- CONTACT EMAIL -->
+
+<div class="mb-3">
+<label for="contactEmail">Owner Email</label>
+<input type="email" id="contactEmail" name="listing[contactEmail]" value="<%= listing.contactEmail %>" class="form-control">
+</div>
+
+<!-- STATUS -->
+
+<div class="mb-3">
+<label for="status">Room Status</label>
+
+<select name="listing[status]" class="form-select">
+
+<option value="available" <%= listing.status === "available" ? "selected" : "" %>>
+Available
+</option>
+
+<option value="rented" <%= listing.status === "rented" ? "selected" : "" %>>
+Rented
+</option>
+
+</select>
+</div>
+
+<button class="btn btn-dark p-2" type="submit">
+Update Listing
+</button>
+
+</form>
+
+<br><br>
+
+</div>
+</div>
+
+</body>

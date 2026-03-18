@@ -1,173 +1,205 @@
 <% layout("/layouts/boilerplate") %>
 
-  
-        <style>
-            #filters{
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-            }
-            .tax-toggle{
-                border: 1px solid black ;
-                border-radius: 1rem;
-                height: 2.7rem;
-                padding: 0.9rem;
-                margin-left: 2rem;
-                display: flex;
-                align-items: center;
-            }
-            .filter{
-                text-align: center;
-                margin-right: 2rem;
-                margin-top: 1.5rem;
-                opacity: 0.6;
-            }
-            .filter:hover{
-                opacity: 1;
-                cursor: pointer;
-            }
-            .filter p{
-                font-size: 0.8rem;
-            };
-            
-            
-            
+<style>
 
-        </style>
-        <!-- <h3>All listings</h3> -->
+/* FILTER BAR */
+
+#filters{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:2rem;
+margin-top:1.5rem;
+margin-bottom:1rem;
+}
 
 
-      <div id="filters">
-        <div class="filter ms-5">
+/* FILTER ITEM */
 
-            <a href="/listings/category/Trending" class="nav-link"><div><i class="fa-solid fa-fire"></i></div></a>
-            <p>Trending</p>
-        </div>
-       <div class="filter">
-           <a href="/listings/category/Apartment" class="nav-link"><div><i class="fa-regular fa-building"></i></i></div></a>
-            <p>Apartment</p>
-        </div>
-         <div class="filter">
-          <a href="/listings/category/House" class="nav-link"><div><i class="fa-solid fa-house"></i></div></a>
-            <p>House</p>
-        </div>
-       <div class="filter">
-         <a href="/listings/category/Villa" class="nav-link"><div><i class="fa-solid fa-mountain-sun"></i></div></a>
-            <p>Villa</p>
-        </div>
-        <div class="filter">
-   <a href="/listings/category/Bungalow" class="nav-link"><div><i class="fa-solid fa-house-chimney-window"></i></div></a>
-            <p>Bungalow</p>
-        </div>
-       <div class="filter">
-         <a href="/listings/category/Hostel" class="nav-link"><div><i class="fa-solid fa-hotel"></i></div></a>
-            <p>Hostel</p>
-        </div>
-        <div class="filter">
-           <a href="/listings/category/Cottage" class="nav-link"><div><i class="fa-solid fa-tree"></i></div></a>
-            <p>Cottage</p>
-        </div>
-       <div class="filter">
-        <a href="/listings/category/Guest-house" class="nav-link"><div><i class="fa-solid fa-house-user"></i></div></a>
-            <p>Guest-house</p>
-        </div>
-        <div class="filter">
-           <a href="/listings/category/Studio" class="nav-link"><div><i class="fa-solid fa-building-user"></i></div></a>
-            <p>Studio</p>
-        </div>
-        
-     
+.filter{
+text-align:center;
+opacity:0.8;
+transition:0.3s;
+}
+
+
+/* ICON CIRCLE */
+
+.icon-box{
+width:50px;
+height:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#f5f5f5;
+font-size:1.3rem;
+transition:0.3s;
+}
+
+
+/* HOVER EFFECT */
+
+.filter:hover{
+opacity:1;
+transform:scale(1.08);
+}
+
+.filter:hover .icon-box{
+background:#fe424d;
+color:white;
+}
+
+
+/* TEXT */
+
+.filter p{
+font-size:0.8rem;
+margin-top:6px;
+color:#444;
+}
+
+</style>
 
 
 
-        
-       
-        <div class="tax-toggle ms-5">
-       <div class="form-check-reverse form-switch">
-          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after Taxes</label>
-       </div>
+<div id="filters">
 
-        </div>
-        
-       
-       
-        
-      </div>
+<!-- PG -->
 
-
-       <div class="page-content container">
-
-
-        
-  <% if (allListing.length === 0) { %>
-
-    <!-- No listings found message -->
-   <div class="alert alert-warning text-center mt-5">
-    <div class="mt-3 mb-3 text-center"> 😕 No listings are found on that location!</div>
-  
+<div class="filter">
+<a href="/listings/category/PG" class="nav-link">
+<div class="icon-box">
+<i class="fa-solid fa-house-user"></i>
 </div>
-  <% } else { %>
+</a>
+<p>PG</p>
+</div>
 
- 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
 
-      <% for (const listing of allListing) { %>
+<!-- HOSTEL -->
 
-        <a href="/listings/<%= listing._id %>" class="text-decoration-none">
-          <div class="card listing-card">
-            <img
-              src="<%= listing.image.url %>"
-              class="card-img-top"
-              alt="listing"
-              style="height: 14rem;"
-            />
+<div class="filter">
+<a href="/listings/category/Hostel" class="nav-link">
+<div class="icon-box">
+<i class="fa-solid fa-building"></i>
+</div>
+</a>
+<p>Hostel</p>
+</div>
 
-            <div class="card-body">
-              <p class="card-text">
-                <b><%= listing.title %></b>
-             <%if(showCategory){%>
-              <span class="badge bg-secondary mb-2">
-             <%= listing.category %>
-         </span>
 
-             <%}%>
-             
-               
+<!-- SINGLE ROOM -->
 
-              <br>
-                ₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %>/night
-                <span style="display: none;" class="tax-info">+18% GST</span>
-              </p>
-            </div>
-          </div>
-        </a>
+<div class="filter">
+<a href="/listings/category/Single Room" class="nav-link">
+<div class="icon-box">
+<i class="fa-solid fa-bed"></i>
+</div>
+</a>
+<p>Single Room</p>
+</div>
 
-      <% } %>
 
-    </div>
- <% } %>
+<!-- SHARED ROOM -->
+
+<div class="filter">
+<a href="/listings/category/Shared Room" class="nav-link">
+<div class="icon-box">
+<i class="fa-solid fa-users"></i>
+</div>
+</a>
+<p>Shared Room</p>
+</div>
+
+
+<!-- APARTMENT -->
+
+<div class="filter">
+<a href="/listings/category/Apartment" class="nav-link">
+<div class="icon-box">
+<i class="fa-solid fa-city"></i>
+</div>
+</a>
+<p>Apartment</p>
+</div>
+
+
+<!-- STUDIO -->
+
+<div class="filter">
+<a href="/listings/category/Studio" class="nav-link">
+<div class="icon-box">
+<i class="fa-solid fa-door-open"></i>
+</div>
+</a>
+<p>Studio</p>
+</div>
 
 </div>
 
 
 
-<script>
-    let taxswitch=document.getElementById("flexSwitchCheckDefault")
-    taxswitch.addEventListener("click",()=>{
-        let taxinfo=document.getElementsByClassName("tax-info");
-        for (const info of taxinfo) {
-            if (info.style.display != "inline") {
-                info.style.display = "inline";
-            } else {
-                info.style.display = "none";
-            }
-        }
-    });
-</script>
+<div class="page-content container">
+
+<% if (allListing.length === 0) { %>
+
+<div class="alert alert-warning text-center mt-5">
+<div class="mt-3 mb-3 text-center">
+😕 No listings found matching your search filters!
+</div>
+</div>
+
+<% } else { %>
 
 
-   
 
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
 
-   
+<% for (const listing of allListing) { %>
+
+<a href="/listings/<%= listing._id %>" class="text-decoration-none">
+
+<div class="card listing-card">
+
+<img
+src="<%= listing.image.url %>"
+class="card-img-top"
+alt="listing"
+style="height:14rem;"
+>
+
+<div class="card-body">
+
+<p class="card-text">
+
+<b><%= listing.title %></b>
+
+<% if(showCategory){ %>
+
+<span class="badge bg-secondary mb-2">
+<%= listing.category %>
+</span>
+
+<% } %>
+
+<br>
+
+₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> / month
+
+</p>
+
+</div>
+
+</div>
+
+</a>
+
+<% } %>
+
+</div>
+
+<% } %>
+
+</div>
