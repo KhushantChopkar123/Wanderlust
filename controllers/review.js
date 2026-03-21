@@ -1,25 +1,46 @@
-let Review=require("../models/review.js");//mongoose schma with model of review
-const Listing = require('../models/listing.js');
+const Review = require("../models/review.js");
+const Listing = require("../models/listing.js");
 
-module.exports.creatingreview=async(req,res)=>{
-  let{id}=req.params
-  let listing=await Listing.findById(id)
-  let newreview=new Review(req.body.review)//we collect all information from form by post request ,then we push that all information into the review section of listing schema, for that we call listingschema data by id
-  newreview.author=req.user._id
-  console.log(newreview)
-  console.log(listing)
-  listing.review.push(newreview)
-  await listing.save()
-  await newreview.save()
-   req.flash("success","New Review is created successfully!");
-  res.redirect(`/listings/${id}`)
+// Create Review
+module.exports.creatingreview = async (req, res) => {
 
+  const { id } = req.params;
+
+  const listing = await Listing.findById(id);
+
+  const newReview = new Review(req.body.review);
+
+  // add logged in user as author
+  newReview.author = req.user._id;
+
+  // save review first
+  await newReview.save();
+
+  // push review id into listing review array
+  listing.review.push(newReview);
+
+  await listing.save();
+
+  req.flash("success", "New Review created successfully!");
+
+  res.redirect(`/listings/${id}`);
 };
 
-module.exports.destroyreview=async(req,res)=>{
-   let{id,reviewId}=req.params
-   await Listing.findByIdAndUpdate(id,{$pull:{review:reviewId}}) //pull is used to remove the reference of review from listing schema that is id or review,then we click delebtn then req come to hereserver then we find listing by id and update it by pulling that review id from review array of listing schema
-   await Review.findByIdAndDelete(reviewId)
-    req.flash("success","Review is Delete successfully!");
-  res.redirect(`/listings/${id}`)
+
+// Delete Review
+module.exports.destroyreview = async (req, res) => {
+
+  const { id, reviewId } = req.params;
+
+  // remove review reference from listing
+  await Listing.findByIdAndUpdate(id, {
+    $pull: { review: reviewId }
+  });
+
+  // delete review document
+  await Review.findByIdAndDelete(reviewId);
+
+  req.flash("success", "Review deleted successfully!");
+
+  res.redirect(`/listings/${id}`);
 };

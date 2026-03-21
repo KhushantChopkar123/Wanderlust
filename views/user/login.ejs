@@ -1,29 +1,106 @@
-<%layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %>
 
-  <div class="row mt-4">
-   <h1 class="col-6 offset-3 mt-5 ">Login on Wanderlust</h1>
-      <div class="col-6  offset-3 mt-5">
-       
-      <form action="/login" method="post" class="needs-validation mb-5" novalidate >
-         <div class="mb-4">
-            <label for="username">Username</label>
-            <input type="text" id="username" 
-              class="form-control" name="username" required>
-            
-         
+<style>
 
-          </div>
-           <div class="mb-5">
-            <label for="password">Passwords</label>
-            <input type="password" id="password"   name="password"
-              class="form-control" required>
-            
-          </div>
-          <button  class="btn btn-success ">Login</button>
+body{
+background-color:#fafefca8;
+}
+
+.login-box{
+max-width:450px;
+margin:auto;
+padding:35px;
+background:white;
+border-radius:18px;
+border:1px solid #e6e6e6;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.login-title{
+text-align:center;
+margin-bottom:25px;
+font-weight:600;
+}
+
+.login-box .form-control{
+border-radius:12px;
+}
+
+.login-box .form-control:focus{
+border-color:#ff385c;
+box-shadow:0 0 4px rgba(255,56,92,0.3);
+}
+
+.login-btn{
+width:100%;
+background:#ff385c;
+color:white;
+border:none;
+padding:10px;
+border-radius:12px;
+}
+
+.login-btn:hover{
+background:#e03150;
+}
+
+.signup-text{
+text-align:center;
+margin-top:15px;
+}
+
+.signup-text a{
+text-decoration:none;
+color:#ff385c;
+font-weight:600;
+}
+
+</style>
 
 
-      </form>
-      </div>
+<div class="row mt-5 mb-5">
 
-    </div>
-    
+<div class="col-md-6 offset-md-3">
+
+<div class="login-box">
+
+<h3 class="login-title">Login</h3>
+
+<form action="/login" method="post" class="needs-validation" novalidate>
+
+<div class="mb-3">
+<label for="username" class="form-label"><b>Username</b></label>
+<input 
+type="text"
+id="username"
+name="username"
+class="form-control"
+placeholder="Enter your username"
+required>
+</div>
+
+<div class="mb-3">
+<label for="password" class="form-label"><b>Password</b></label>
+<input 
+type="password"
+id="password"
+name="password"
+class="form-control"
+placeholder="Enter your password"
+required>
+</div>
+
+<button class="login-btn mt-3">Login</button>
+
+</form>
+
+<p class="signup-text">
+Don't have an account?
+<a href="/signup">Sign Up</a>
+</p>
+
+</div>
+
+</div>
+
+</div>

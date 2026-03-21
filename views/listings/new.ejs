@@ -1,195 +1,214 @@
 <% layout("/layouts/boilerplate") %>
 
-<body>
+<style>
+body {
+    background: #f6f7fb;
+    font-family: 'Poppins', sans-serif;
+}
 
-<div class="row">
-<div class="col-lg-6 col-md-8 col-12 offset-lg-3 offset-md-2">
+/* Page Title */
+.page-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+}
 
-<br>
-<h3>Create a New Student Rental Listing</h3>
+/* Form Container */
+.form-box {
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+    background: #fff;
+    padding: 45px 35px;
+    border-radius: 15px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
 
-<form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+.form-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
 
-<!-- TITLE -->
+/* Form Labels */
+.form-label {
+    font-weight: 500;
+    color: #444;
+}
 
-<div class="mb-3">
-<label for="title" class="form-label">Title</label>
-<input 
-type="text" 
-id="title" 
-name="listing[title]" 
-placeholder="Room near college..." 
-class="form-control" 
-required>
+/* Buttons */
+.add-btn {
+    background: #ff385c;
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.add-btn:hover { background: #e03150; }
+
+.cancel-btn {
+    background: #6c757d;
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cancel-btn:hover { background: #5a6268; }
+
+/* Validation */
+.was-validated .form-control:valid,
+.was-validated .form-select:valid,
+.was-validated textarea:valid {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40,167,69,0.3);
+}
+
+.was-validated .form-control:invalid,
+.was-validated .form-select:invalid,
+.was-validated textarea:invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220,53,69,0.3);
+}
+
+/* Responsive */
+@media (max-width:768px) { .form-box { padding:35px 25px; } }
+@media (max-width:480px) {
+    .page-title { font-size:1.6rem; margin:30px 0 20px; }
+    .add-btn,.cancel-btn { font-size:0.95rem; padding:10px 0; }
+}
+
+/* Facilities Dropdown */
+.facilities-label { font-weight: 500; margin-bottom: 8px; display:block; }
+.facilities-dropdown .dropdown-menu { padding: 15px; width: 100%; }
+</style>
+
+<div class="container">
+    <h1 class="page-title">Create Student Rental Listing</h1>
+
+    <div class="form-box">
+        <form class="needs-validation" novalidate method="post" action="/listings" enctype="multipart/form-data">
+
+            <!-- Title -->
+            <div class="mb-3">
+                <label class="form-label"><b>Listing Title</b></label>
+                <input type="text" name="listing[title]" class="form-control" placeholder="Room near college..." required>
+                <div class="invalid-feedback">Please enter a title for your listing.</div>
+            </div>
+
+            <!-- Property Type -->
+            <div class="mb-3">
+                <label class="form-label"><b>Property Type</b></label>
+                <select name="listing[category]" class="form-select" required>
+                    <option value="">Choose property type</option>
+                    <option value="PG">PG</option>
+                    <option value="Hostel">Hostel</option>
+                    <option value="Single Room">Single Room</option>
+                    <option value="Shared Room">Shared Room</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Studio">Studio</option>
+                </select>
+                <div class="invalid-feedback">Please select the type of property.</div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label class="form-label"><b>Description</b></label>
+                <textarea name="listing[description]" class="form-control" rows="4" placeholder="Write a short description about your property..." required></textarea>
+                <div class="invalid-feedback">Please provide a description.</div>
+            </div>
+
+            <!-- Image -->
+            <div class="mb-3">
+                <label class="form-label"><b>Upload Room Image</b></label>
+                <input type="file" name="listing[image]" class="form-control" required>
+                <div class="invalid-feedback">Please upload an image of the property.</div>
+            </div>
+
+            <!-- Monthly Rent -->
+            <div class="mb-3">
+                <label class="form-label"><b>Monthly Rent</b></label>
+                <input type="number" name="listing[price]" class="form-control" placeholder="5000" required min="1">
+                <div class="invalid-feedback">Please enter a valid rent amount.</div>
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+                <label class="form-label"><b>Location</b></label>
+                <input type="text" name="listing[location]" class="form-control" placeholder="Nagpur, Maharashtra" required>
+                <div class="invalid-feedback">Please enter the location.</div>
+            </div>
+
+            <!-- Nearby College -->
+            <div class="mb-3">
+                <label class="form-label"><b>Nearby College</b></label>
+                <input type="text" name="listing[collegeNearby]" class="form-control" placeholder="VNIT Nagpur" required>
+                <div class="invalid-feedback">Please enter the nearby college.</div>
+            </div>
+
+            <!-- Facilities Dropdown -->
+            <div class="mb-3 facilities-dropdown">
+                <label class="facilities-label"><b>
+                    Facilities
+                </b></label>
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark dropdown-toggle w-100 text-start" type="button" data-bs-toggle="dropdown">
+                        Select Facilities
+                    </button>
+                    <div class="dropdown-menu w-100">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[facilities][]" value="WiFi" id="fac-wifi">
+                            <label class="form-check-label" for="fac-wifi">WiFi</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[facilities][]" value="Food" id="fac-food">
+                            <label class="form-check-label" for="fac-food">Food</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[facilities][]" value="Parking" id="fac-parking">
+                            <label class="form-check-label" for="fac-parking">Parking</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[facilities][]" value="Attached Bathroom" id="fac-bath">
+                            <label class="form-check-label" for="fac-bath">Attached Bathroom</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[facilities][]" value="Laundry" id="fac-laundry">
+                            <label class="form-check-label" for="fac-laundry">Laundry</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[facilities][]" value="AC" id="fac-ac">
+                            <label class="form-check-label" for="fac-ac">AC</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Phone -->
+            <div class="mb-3">
+                <label class="form-label"><b>Owner Contact Number</b></label>
+                <input type="text" name="listing[contactPhone]" class="form-control" placeholder="9876543210" required pattern="\d{10}">
+                <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+            </div>
+
+            <!-- Contact Email -->
+            <div class="mb-3">
+                <label class="form-label"><b>Owner Email</b></label>
+                <input type="email" name="listing[contactEmail]" class="form-control" placeholder="owner@gmail.com" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="add-btn flex-fill">Add Listing</button>
+                <a href="/listings" class="cancel-btn flex-fill">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
-
-<!-- CATEGORY -->
-
-<div class="mb-3">
-<label class="form-label">Property Type</label>
-
-<select name="listing[category]" class="form-select" required>
-
-<option value="">Select Property Type</option>
-
-<option value="PG">PG</option>
-<option value="Hostel">Hostel</option>
-<option value="Single Room">Single Room</option>
-<option value="Shared Room">Shared Room</option>
-<option value="Apartment">Apartment</option>
-<option value="Studio">Studio</option>
-
-</select>
-
-</div>
-
-<!-- DESCRIPTION -->
-
-<div class="mb-3">
-<label for="description" class="form-label">Description</label>
-<textarea 
-id="description" 
-name="listing[description]" 
-class="form-control" 
-rows="3"
-required></textarea>
-</div>
-
-<!-- IMAGE -->
-
-<div class="mb-3">
-<label for="image" class="form-label">Upload Room Image</label>
-<input 
-type="file" 
-id="image" 
-name="listing[image]" 
-class="form-control" 
-required>
-</div>
-
-<!-- PRICE -->
-
-<div class="mb-3">
-<label for="price" class="form-label">Monthly Rent</label>
-<input 
-type="number" 
-id="price" 
-name="listing[price]" 
-placeholder="5000" 
-class="form-control" 
-required>
-</div>
-
-<!-- LOCATION -->
-
-<div class="mb-3">
-<label for="location" class="form-label">Location</label>
-<input 
-type="text" 
-id="location" 
-name="listing[location]" 
-placeholder="Nagpur, Maharashtra" 
-class="form-control" 
-required>
-</div>
-
-<!-- NEARBY COLLEGE -->
-
-<div class="mb-3">
-<label for="collegeNearby" class="form-label">Nearby College</label>
-<input 
-type="text" 
-id="collegeNearby" 
-name="listing[collegeNearby]" 
-placeholder="VNIT Nagpur" 
-class="form-control">
-</div>
-
-<!-- FACILITIES -->
-
-<div class="mb-3">
-
-<label class="form-label">Facilities</label>
-
-<div class="dropdown">
-
-<button class="btn btn-outline-dark dropdown-toggle w-100 text-start"
-type="button"
-data-bs-toggle="dropdown">
-
-Select Facilities
-
-</button>
-
-<div class="dropdown-menu p-3 w-100">
-
-<div class="form-check">
-<input class="form-check-input" type="checkbox" name="listing[facilities]" value="WiFi">
-<label class="form-check-label">WiFi</label>
-</div>
-
-<div class="form-check">
-<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Food">
-<label class="form-check-label">Food</label>
-</div>
-
-<div class="form-check">
-<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Parking">
-<label class="form-check-label">Parking</label>
-</div>
-
-<div class="form-check">
-<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Attached Bathroom">
-<label class="form-check-label">Attached Bathroom</label>
-</div>
-
-<div class="form-check">
-<input class="form-check-input" type="checkbox" name="listing[facilities]" value="Laundry">
-<label class="form-check-label">Laundry</label>
-</div>
-
-<div class="form-check">
-<input class="form-check-input" type="checkbox" name="listing[facilities]" value="AC">
-<label class="form-check-label">AC</label>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<!-- CONTACT PHONE -->
-
-<div class="mb-3">
-<label for="contactPhone" class="form-label">Owner Contact Number</label>
-<input 
-type="text" 
-id="contactPhone" 
-name="listing[contactPhone]" 
-placeholder="9876543210" 
-class="form-control">
-</div>
-
-<!-- CONTACT EMAIL -->
-
-<div class="mb-3">
-<label for="contactEmail" class="form-label">Owner Email</label>
-<input 
-type="email" 
-id="contactEmail" 
-name="listing[contactEmail]" 
-placeholder="owner@gmail.com" 
-class="form-control">
-</div>
-
-<button type="submit" class="btn btn-dark p-2">
-Add Listing
-</button>
-
-<br><br>
-
-</form>
-</div>
-</div>
-
-</body>
