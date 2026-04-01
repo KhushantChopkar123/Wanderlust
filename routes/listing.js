@@ -28,8 +28,8 @@ router.get("/category/:category",
 router.route("/:id")
 .get(wrapAsync(listingController.showlisting))
 .put(isLoggedIn,isOwner,upload.single('listing[image]'),validateListing, wrapAsync(listingController.updatelisting))
-.delete(isLoggedIn,isOwner,wrapAsync(listingController.destroylistings))
 
+.delete(isLoggedIn,isOwner,wrapAsync(listingController.destroylistings))
 router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEditform))
 
 module.exports=router;
