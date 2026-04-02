@@ -97,17 +97,16 @@ app.use((req,res,next)=>{
 });
 
 
-
+// root route
+app.get("/", (req, res) => {
+  res.render("home");
+});
 
 
 app.use("/listings",listingRouter)//parent route for listing routes
 app.use("/listings/:id/review",reviewRouter)//parent route for review routes
 app.use("/",userRouter)//parent route for user routes
 
-// root route
-app.get("/", (req, res) => {
-  res.redirect("/listings");
-});
 
 
 app.use((req, res,next) => {
