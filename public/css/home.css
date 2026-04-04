@@ -2,13 +2,14 @@
 
 body{
 font-family:'Poppins',sans-serif;
-/* background:linear-gradient(135deg,#f8fafc,#eef2ff); */
 color:#333;
 scroll-behavior:smooth;
 margin:0;
 padding:0;
 }
-
+.home-page{
+    background: #eef5ff;
+}
 /* SECTION SPACING */
 
 .section-space{

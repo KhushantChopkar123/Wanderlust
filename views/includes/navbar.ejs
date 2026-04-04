@@ -8,6 +8,11 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         transition: 0.3s;
     }
+    .logo-icon{
+  color:#3b82f6 !important;   /* light blue */
+  margin-right:6px;
+}
+      
 
 
     /* LOGO */
@@ -41,7 +46,7 @@
         content: "";
         width: 0;
         height: 2px;
-        background: #ff385c;
+        background:#3b82f6 !important;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -108,7 +113,7 @@
     /* SEARCH BUTTON */
 
     .btn-search {
-        background: linear-gradient(135deg, #ff385c, #ff6b6b);
+        background:#3b82f6 !important;
         color: white;
         border-radius: 30px;
         height: 40px;
@@ -123,7 +128,7 @@
 
     .btn-search:hover {
         transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(255, 56, 92, 0.4);
+        box-shadow: 0 5px 15px rgb(114, 183, 228);
     }
 
     .btn-search i {
@@ -175,25 +180,25 @@
 
         <!-- LOGO -->
 
-        <a class="navbar-brand" href="/listings">
-            <i class="fa-regular fa-compass"></i>
-        </a>
+    <a class="navbar-brand fw-bold" href="/">
+  <i class="fa-solid fa-house-user logo-icon"></i>  Home
+</a>
+<!-- MOBILE TOGGLE -->
 
-        <!-- MOBILE TOGGLE -->
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    
+    <span class="navbar-toggler-icon"></span>
+    
+</button>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-            <!-- LEFT SIDE -->
-
-            <div class="navbar-nav">
-                <a class="nav-link" href="/listings">Explore</a>
-                <a class="nav-link" href="/">Home</a>
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    
+    <!-- LEFT SIDE -->
+    
+    <div class="navbar-nav">
+        
+        
+                <a class="nav-link" href="/listings">Browse Listings</a>
             </div>
 
             <!-- CENTER SEARCH -->
@@ -242,7 +247,7 @@
 
             <div class="navbar-nav ms-md-auto text-center text-md-start">
 
-                <a class="nav-link" href="/listings/new">Airbnb your home</a>
+                <a class="nav-link" href="/listings/new">List Your Property</a>
 
                 <% if (!currUser) { %>
 
