@@ -28,7 +28,7 @@ border-radius:12px;
 
 .signup-box .form-control:focus{
 border-color:#3b82f6 !important;
-box-shadow:0 0 4px rgba(255,56,92,0.3);
+box-shadow:0 0 4px rgba(73, 128, 192, 0.525);
 }
 
 .signup-btn{
@@ -55,12 +55,25 @@ color:#3b82f6 !important;
 font-weight:600;
 }
 
+
+.mainbox {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+ 
+}
+
+/* Hover effect (popup feel) */
+.mainbox:hover {
+  transform: translateY(-8px) scale(1.02);
+  
+}
+
+
 </style>
 
 
 <div class="row mt-5 mb-5">
 
-<div class="col-md-6 offset-md-3">
+<div class="col-md-6 offset-md-3 mainbox">
 
 <div class="signup-box">
 

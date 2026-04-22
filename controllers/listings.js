@@ -5,8 +5,6 @@ const geocodingClient = mbxgeocoding({ accessToken: mapToken });
 
 
 
-/* INDEX ROUTE (UPDATED WITH FILTERS + COLLEGE SEARCH) */
-
 module.exports.index = async (req,res)=>{
 
 let {location,category,price} = req.query;

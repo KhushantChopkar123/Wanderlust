@@ -27,7 +27,7 @@ module.exports.creatingreview = async (req, res) => {
 };
 
 
-// Delete Review
+// delete review only
 module.exports.destroyreview = async (req, res) => {
 
   const { id, reviewId } = req.params;
@@ -37,7 +37,7 @@ module.exports.destroyreview = async (req, res) => {
     $pull: { review: reviewId }
   });
 
-  // delete review document
+  //delete review documents
   await Review.findByIdAndDelete(reviewId);
 
   req.flash("success", "Review deleted successfully!");
